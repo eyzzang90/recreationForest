@@ -29,8 +29,12 @@ public class RecreationForestController {
 		System.out.println("getSort> " + pageable.getSort());
 		
 		System.out.println("페이지 호출");
-		Page<RecreationForest> list =  recreationForestRepository.findByCpCode(rcrFrst.getCpCode(), pageable);
-		
+		Page<RecreationForest> list = null;
+		if(rcrFrst.getCpCode()==null){
+			list = recreationForestRepository.findAll(pageable);
+		}else{
+			list = recreationForestRepository.findByCpCode(rcrFrst.getCpCode(), pageable);
+		}
 		if(list ==null){
 			System.out.println("null");
 		}else{
